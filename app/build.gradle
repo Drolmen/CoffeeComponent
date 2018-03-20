@@ -1,14 +1,19 @@
 apply plugin: 'com.android.application'
 
+def androidConfig = rootProject.ext.android
+def dependenceConfig = rootProject.ext.dependencies
+
 android {
-    compileSdkVersion 26
+
+    compileSdkVersion androidConfig.compileSdkVersion
+
     defaultConfig {
         applicationId "com.drolmen.coffeecomponent"
-        minSdkVersion 17
-        targetSdkVersion 26
+        testInstrumentationRunner androidConfig.runner
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        minSdkVersion androidConfig.minSdkVersion
+        targetSdkVersion androidConfig.targetSdkVersion
     }
     buildTypes {
         release {
@@ -20,8 +25,8 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation dependenceConfig.v7
+    implementation dependenceConfig.constranit
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'

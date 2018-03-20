@@ -1,0 +1,15 @@
+ext {
+    //build配置
+    android = [
+            compileSdkVersion: 26,
+            minSdkVersion    : 17,
+            targetSdkVersion : 26,
+            runner: "android.support.test.runner.AndroidJUnitRunner"
+    ]
+
+    supportLibrary = "26.1.0"
+    dependencies = [
+        v7 : "com.android.support:appcompat-v7:${supportLibrary}",
+        constranit: "com.android.support.constraint:constraint-layout:1.0.2",
+    ]
+}
