@@ -1,4 +1,4 @@
-def isRunAlone = false
+def isRunAlone = true
 if(isRunAlone) {
     apply plugin: 'com.android.application'
 } else {
@@ -25,16 +25,33 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            debuggable true
+        }
+    }
+
+    sourceSets {
+        if (isRunAlone) {
+            /**
+             * 通过以下配置，可以使host下源代码、清单文件会与main/*自动合并，
+             * 实现Module独立运行的效果
+             */
+            debug {
+                java.srcDirs = ['src/main/java', 'src/host/java']
+                manifest.srcFile 'src/host/AndroidManifest.xml'
+            }
+
+            release {
+                java.srcDirs = ['src/main/java', 'src/host/java']
+                manifest.srcFile 'src/host/AndroidManifest.xml'
+            }
         }
     }
 
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation dependenceConfig.v7
     implementation dependenceConfig.constranit
     testImplementation 'junit:junit:4.12'
