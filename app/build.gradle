@@ -6,6 +6,7 @@ def dependenceConfig = rootProject.ext.dependencies
 android {
 
     compileSdkVersion androidConfig.compileSdkVersion
+    resourcePrefix "app_"
 
     defaultConfig {
         applicationId "com.drolmen.coffeecomponent"
@@ -24,10 +25,11 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation dependenceConfig.v7
     implementation dependenceConfig.constranit
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+//    runtimeOnly project(':assemblecomponent')
 }

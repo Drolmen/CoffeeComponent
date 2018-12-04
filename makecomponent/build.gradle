@@ -1,4 +1,4 @@
-def isRunAlone = true
+def isRunAlone = false
 if(isRunAlone) {
     apply plugin: 'com.android.application'
 } else {
@@ -9,6 +9,8 @@ def androidConfig = rootProject.ext.android
 def dependenceConfig = rootProject.ext.dependencies
 android {
     compileSdkVersion androidConfig.compileSdkVersion
+
+    resourcePrefix "make_"
 
     defaultConfig {
         minSdkVersion androidConfig.minSdkVersion
